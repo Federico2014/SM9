@@ -304,7 +304,7 @@ void Mul_Big_Long(CBigInt *Y, CBigInt N, unsigned long A)
 	unsigned long carry=0;
 	unsigned int i;
 	CBigIntInit(&X);
-	Mov_Big_Big(&X,N);;
+	Mov_Big_Big(&X,N);
 	for(i=0;i<N.m_nLength;i++)
 	{
 		mul=N.m_ulValue[i];
@@ -437,7 +437,7 @@ void Div_Big_Long(CBigInt *Y, CBigInt N, unsigned long A)
 	unsigned long carry=0;
 	int i;
 	//CBigIntInit(X);
-	Mov_Big_Big(&X,N);;
+	Mov_Big_Big(&X,N);
 	if(X.m_nLength==1)
 	{
 		X.m_ulValue[0]=X.m_ulValue[0]/A;
@@ -472,7 +472,7 @@ void Mod_Big_Big(CBigInt *Z,CBigInt N, CBigInt A)
 	unsigned int i,len;
 	CBigIntInit(&X);
 	CBigIntInit(&Y);
-	Mov_Big_Big(&X,N);;
+	Mov_Big_Big(&X,N);
 	while(Cmp(X,A)>=0)
 	{
 		div=X.m_ulValue[X.m_nLength-1];
@@ -571,33 +571,32 @@ sys暂时只能为10或16
 ****************************************************************************************/
 char* Put(CBigInt N, unsigned int system)
 {
-	char* str;	
+	static char s1[1024];
 	char t[17]="0123456789ABCDEF";
 	int i, a, len;
-	char s[1024] = {"0"};
-	char s1[1024] = {"0"};
+	char s[1024] = {0};
 	CBigInt X;
-	str="";
+
 	if((N.m_nLength==1)&&(N.m_ulValue[0]==0))
 	{
-		str="0";
-		return str;
+		s1[0] = '0';
+		s1[1] = '\0';
+		return s1;
 	}
 
 	CBigIntInit(&X);
-	Mov_Big_Big(&X,N);;
-	for(i = 0; X.m_ulValue[X.m_nLength-1]>0; i ++)
+	Mov_Big_Big(&X,N);
+	for(i = 0; X.m_ulValue[X.m_nLength-1]>0 && i < 1023; i ++)
 	{
 		a=Mod_Big_Long(X,system);
-		s[i] = t[a]; 
-		//Mov_Big_Big(&X,Div_Big_Long(X,system));
+		s[i] = t[a];
 		Div_Big_Long(&X,X,system);
 	}
-	len = i-1;  
-	for( i= 0; i<= len; i++)
+	len = i-1;
+	for(i = 0; i <= len && i < 1023; i++)
 		s1[i] = s[len-i];
-	str = s1;
-	return str;
+	s1[len+1] = '\0';
+	return s1;
 }
 //主要显示基域元素，将最低位为0的域元素补0显示
 unsigned char* PutFieldElement(CBigInt N, unsigned int system)
@@ -616,7 +615,7 @@ unsigned char* PutFieldElement(CBigInt N, unsigned int system)
 	}
 
 	CBigIntInit(&X);
-	Mov_Big_Big(&X,N);;
+	Mov_Big_Big(&X,N);
 	for(i = 0; X.m_ulValue[X.m_nLength-1]>0; i ++)
 	{
 		a=Mod_Big_Long(X,system);
@@ -713,7 +712,7 @@ void Exp(CBigInt *Z, CBigInt N, CBigInt A, CBigInt B)
 	CBigIntInit(&X);
 	CBigIntInit(&Y);
 	CBigIntInit(&M);
-	Mov_Big_Big(&X,N);;
+	Mov_Big_Big(&X,N);
 	for(i=k-2;i>=0;i--)
 	{
 		//Mov_Big_Big(&Y,Mul_Big_Long(X,X.m_ulValue[X.m_nLength-1]));

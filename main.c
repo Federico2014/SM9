@@ -20,10 +20,10 @@ void test_Paiiring_Rate();
 void test_Hash1();
 void test_Hash2();
 void test_SM4();
-void main()
+int main()
 {
 
-//	printf("×¢£º´Ó×óµ½ÓÒ·Ö±ðÎª´Ó¸ßÎ»µ½µÍÎ»£¡\n");
+//	printf("×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò·Ö±ï¿½Îªï¿½Ó¸ï¿½Î»ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½\n");
 	SM9Params_init(&BN);
 /*	printf("BN.t = %s\n",Put(BN.t,DEC));
 	printf("BN.q = %s\n",Put(BN.q,DEC));
@@ -44,9 +44,10 @@ void main()
 	// DSA_Demo();
 	//  KA_Demo();
 	//   KEM_demo();
-	  PKC_demo(1); //²ÎÊý0±íÊ¾SM9±íÊ¾ÐòÁÐ¼ÓÃÜÄ£Ê½£¬1¼°ÆäËü±íÊ¾²ÉÓÃ·Ö×é¼ÓÃÜÄ£Ê½
+	  PKC_demo(1); //ï¿½ï¿½ï¿½ï¿½0ï¿½ï¿½Ê¾SM9ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½Ð¼ï¿½ï¿½ï¿½Ä£Ê½ï¿½ï¿½1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä£Ê½
 	 system("pause");
-	
+
+	return 0;
 }
 
 void test_SM4()
@@ -93,13 +94,13 @@ void test_SM4()
     //SM9 encrypt testing vector
 	Hex2Byte(key2, str1, 32);
 	Hex2Byte(input2, str2, 64);
-	//¼ÓÃÜ
+	//ï¿½ï¿½ï¿½ï¿½
 	sm4_setkey_enc(&ctx,key2);
 	sm4_crypt_ecb(&ctx,1,32,input2,output2);
 	for(i=0;i<32;i++)
 		printf("%02x ", output2[i]);
 	printf("\n");
-	//½âÃÜ
+	//ï¿½ï¿½ï¿½ï¿½
 	sm4_setkey_dec(&ctx,key2);
 	sm4_crypt_ecb(&ctx,0,32,output2,output2);
 	for(i=0;i<32;i++)
@@ -215,7 +216,7 @@ void test_Paiiring_Rate()
  */  // printf("BNPairing test: over!\n");
 	
 /*	
-	printf("SM9Ë«ÏßÐÔ¶ÔRate¼ÆËã£º\n");
+	printf("SM9Ë«ï¿½ï¿½ï¿½Ô¶ï¿½Rateï¿½ï¿½ï¿½ã£º\n");
 	printf("P = \n");
 	P_toString_d(P);
 	printf("Q = \n");
@@ -234,7 +235,7 @@ void test_Paiiring_Rate()
 	F12_toString_d(f3);
 	printf("SM9_Rate(Q,2P) = SM9_Rate(2Q,P) = SM9_Rate(Q,P)^2 \n");
 */
-   printf("²âÊÔ¿ªÊ¼£º\n");
+   printf("ï¿½ï¿½ï¿½Ô¿ï¿½Ê¼ï¿½ï¿½\n");
    //  Pairing_opt(&g,Q,P);
        n = 10;
 	   start = clock();
@@ -242,7 +243,7 @@ void test_Paiiring_Rate()
      	Pairing_Rate(&g,Q,P);
 	   finish = clock();
       time = (double)(finish-start)/n;
-      printf("SM9 Pairing time cost£º%f ms\n",time);
+      printf("SM9 Pairing time costï¿½ï¿½%f ms\n",time);
 /*
        mpz_init_set_str(ks,"0130E78459D78545CB54C587E02CF480CE0B66340F319F348A1D5B1F2DC5F4",16);
        P2_multiply(&Q3,Q,ks);
@@ -268,7 +269,7 @@ void test_Paiiring_Rate()
 
 	   F12_exp(&f3,g,ks);
 	 //  P2_toString_d(Q4);
-       printf("ks ²âÊÔ\n");  
+       printf("ks ï¿½ï¿½ï¿½ï¿½\n");  
 	   if(F12_equal(f1,f2))
 		  printf("Paring right 1!\n");
 	   if(F12_equal(f2,f3))
@@ -295,7 +296,7 @@ void test_Paiiring_Rate()
 	   F12_toString_d(f3);
    */	
  /*
-	   //²âÊÔ R(kt*Q,ks*P) = R(Q,P)^(kt*ks)
+	   //ï¿½ï¿½ï¿½ï¿½ R(kt*Q,ks*P) = R(Q,P)^(kt*ks)
        mpz_init_set_str(ks,"0130E78459D78545CB54C587E02CF480CE0B66340F319F348A1D5B1F2DC5F4",16);
        mpz_init_set_str(kt,"5730E78459D78545CB54C587E02CF480CE0B66340F319F348A1D5B1F2D4571",16);
  //      mpz_init_set_str(ks,"4",16);
@@ -307,14 +308,14 @@ void test_Paiiring_Rate()
        Pairing_Rate(&f1,Q,P1);
     	if(P_isOnBNCurve(P1))
 		{
-           printf("BNPoint test:¡¡p1 is  on the Curve \n");
+           printf("BNPoint test:ï¿½ï¿½p1 is  on the Curve \n");
 		}       
        P2_multiply(&Q4,Q,kt);
 	   if(P2_isOnBNTCurve(Q4))
 	   {
-          printf("BNPoint2 test:¡¡p2 is on the BNT Curve \n");
+          printf("BNPoint2 test:ï¿½ï¿½p2 is on the BNT Curve \n");
 	   } 
-        printf(" ²âÊÔ¿ªÊ¼\n");
+        printf(" ï¿½ï¿½ï¿½Ô¿ï¿½Ê¼\n");
 		P_toString_d(P1);
 		P2_toString_d(Q4);
 	    Pairing_Rate(&f5,Q4,P1);
@@ -383,7 +384,7 @@ void test_Paiiring()
 		printf("Paring right 2!\n");  
     printf("BNPairing test: over!\n");
 	
-	printf("SM9Ë«ÏßÐÔ¶Ô¼ÆËã£º\n");
+	printf("SM9Ë«ï¿½ï¿½ï¿½Ô¶Ô¼ï¿½ï¿½ã£º\n");
   /* 	printf("P = \n");
 	P_toString(P,DEC);
 	printf("Q = \n");
@@ -399,7 +400,7 @@ void test_Paiiring()
 	*/
 	//printf("SM9_Opt(Q,2P) = SM9_Opt(2Q,P) = SM9_Opt(Q,P)^2 \n");
 
-    printf("²âÊÔ¿ªÊ¼£º\n");
+    printf("ï¿½ï¿½ï¿½Ô¿ï¿½Ê¼ï¿½ï¿½\n");
    //  Pairing_opt(&g,Q,P);
        n = 10;
 	   start = clock();
@@ -407,7 +408,7 @@ void test_Paiiring()
 	     Pairing_opt(&g,Q,P);
 	   finish = clock();
       time = (double)(finish-start)/n;
-      printf("SM9 Pairing time cost£º%f ms\n",time);
+      printf("SM9 Pairing time costï¿½ï¿½%f ms\n",time);
 
 	  Get(&ks,"0130E78459D78545CB54C587E02CF480CE0B66340F319F348A1D5B1F2DC5F4",HEX);
    
@@ -434,7 +435,7 @@ void test_Paiiring()
 	   f2 = Pairing_opt(Q4,P);
 
 	   f3 = F12_exp(g,ks);
-       printf("ks ²âÊÔ\n");  
+       printf("ks ï¿½ï¿½ï¿½ï¿½\n");  
 	   if(F12_equal(f1,f2))
 		  printf("Paring right 1!\n");
 	   if(F12_equal(f2,f3))
@@ -460,7 +461,7 @@ void test_Paiiring()
 	   f3 = F12_exp(f3,BN.n);
 	   F12_toString(f3,DEC);
 	
-	   //²âÊÔ R(kt*Q,ks*P) = R(Q,P)^(kt*ks)
+	   //ï¿½ï¿½ï¿½ï¿½ R(kt*Q,ks*P) = R(Q,P)^(kt*ks)
        ks = Get("0130E78459D78545CB54C587E02CF480CE0B66340F319F348A1D5B1F2DC5F4",16);
        kt = Get("5730E78459D78545CB54C587E02CF480CE0B66340F319F348A1D5B1F2D4571",16);
  //      mpz_init_set_str(ks,"4",16);
@@ -472,14 +473,14 @@ void test_Paiiring()
     // Pairing_opt(&f1,Q,P1);
     	if(P_isOnBNCurve(P1))
 		{
-           printf("BNPoint test:¡¡p1 is  on the Curve \n");
+           printf("BNPoint test:ï¿½ï¿½p1 is  on the Curve \n");
 		}       
        Q4 = P2_multiply(Q,kt);
 	   if(P2_isOnBNTCurve(Q4))
 	   {
-          printf("BNPoint2 test:¡¡p2 is on the BNT Curve \n");
+          printf("BNPoint2 test:ï¿½ï¿½p2 is on the BNT Curve \n");
 	   } 
-        printf(" ²âÊÔ¿ªÊ¼\n");
+        printf(" ï¿½ï¿½ï¿½Ô¿ï¿½Ê¼\n");
 		P_toString(P1,DEC);
 		P2_toString(Q4,DEC);
 	    f5 = Pairing_opt(Q4,P1);
@@ -522,49 +523,49 @@ void test_Paiiring()
     
     P2_construct_xy(&p1,b1,b2);
 //	P2_toString_d(p1);
-	//²âÊÔp1ÊÇ·ñÔÚBNÅ¤ÇúÏßÉÏ
+	//ï¿½ï¿½ï¿½ï¿½p1ï¿½Ç·ï¿½ï¿½ï¿½BNÅ¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	if(!P2_isOnBNTCurve(p1))
 	{
-        printf("BNPoint2 test:¡¡p is not on the Curve \n");
+        printf("BNPoint2 test:ï¿½ï¿½p is not on the Curve \n");
 	}else printf("Test 1 passed!\n");
 	
-	//²âÊÔn*p1ÊÇ·ñÎªÁã
-//	printf("²âÊÔ¿ªÊ¼£º\n");
+	//ï¿½ï¿½ï¿½ï¿½n*p1ï¿½Ç·ï¿½Îªï¿½ï¿½
+//	printf("ï¿½ï¿½ï¿½Ô¿ï¿½Ê¼ï¿½ï¿½\n");
 	P2_multiply(&p2,p1,BN.n);
 	if(!P2_isZero(p2))
 	{
-        printf("BNPoint2 test:¡¡n*p != 0 \n");
+        printf("BNPoint2 test:ï¿½ï¿½n*p != 0 \n");
 	}else printf("Test 2 passed!\n");
 
-	//²âÊÔ -(-p1) == p1
+	//ï¿½ï¿½ï¿½ï¿½ -(-p1) == p1
 	P2_negate(&p4,p1);
 	P2_negate(&p4,p4);
 	if(!P2_equal(p1,p4))
 	{
-        printf("BNPoint2 test:¡¡ -(-p1) != p1 \n");
+        printf("BNPoint2 test:ï¿½ï¿½ -(-p1) != p1 \n");
 	}else printf("Test 3 passed!\n");
 
 
 //	printf("\n");
     
-	//²âÊÔ p1+p2 = p2+p1
+	//ï¿½ï¿½ï¿½ï¿½ p1+p2 = p2+p1
 	P2_add(&p4,p1,p2);
 	P2_add(&p5,p2,p1);
 	if(!P2_equal(p4,p5))
 	{
-        printf("BNPoint2 test:¡¡p1+p2 != p2+p1 \n");
+        printf("BNPoint2 test:ï¿½ï¿½p1+p2 != p2+p1 \n");
 	}else printf("Test 4 passed!\n");
 
 
-	//²âÊÔ p1+p1 = 2*p1
+	//ï¿½ï¿½ï¿½ï¿½ p1+p1 = 2*p1
 	P2_add(&p4,p1,p1);
 	P2_twice(&p5,p1);
 	if(!P2_equal(p4,p5))
 	{
-        printf("BNPoint2 test:¡¡p1+p1 != 2*p1 \n");
+        printf("BNPoint2 test:ï¿½ï¿½p1+p1 != 2*p1 \n");
 	}else printf("Test 5 passed!\n");
 
-	//²âÊÔ 2p1+2p1 == p1+3p1
+	//ï¿½ï¿½ï¿½ï¿½ 2p1+2p1 == p1+3p1
 	
 	P2_twice(&p3,p1);
 	P2_twice(&p4,p3);
@@ -573,27 +574,27 @@ void test_Paiiring()
  	P2_add(&p5,p1,p5);	
 	if(!P2_equal(p4,p5))
 	{
-        printf("BNPoint2 test:¡¡ 2p1+2p1 != p1+3p1 \n");
+        printf("BNPoint2 test:ï¿½ï¿½ 2p1+2p1 != p1+3p1 \n");
 	}else printf("Test 6 passed!\n");
 
 
    
- 	//²âÊÔ p+0 == p
+ 	//ï¿½ï¿½ï¿½ï¿½ p+0 == p
 	P2_multiply(&p4,p1,BN.n);
 	P2_add(&p5,p1,p4);
 	if(!P2_equal(p1,p5))
 	{
-        printf("BNPoint2 test:¡¡p + 0 != p \n");
+        printf("BNPoint2 test:ï¿½ï¿½p + 0 != p \n");
 	}else printf("Test 7 passed!\n");
    
-    //²âÊÔ 0*p == p
+    //ï¿½ï¿½ï¿½ï¿½ 0*p == p
 	P2_multiply(&p5,p1,BN.ZERO);
 	if(!P2_isZero(p5))
 	{
-        printf("BNPoint test:¡¡ 0*p != 0 \n");
+        printf("BNPoint test:ï¿½ï¿½ 0*p != 0 \n");
 	}else printf("Test 8 passed!\n");
  
-    //²âÊÔ (-m)*x == m*(-x)
+    //ï¿½ï¿½ï¿½ï¿½ (-m)*x == m*(-x)
 	
 	P2_multiply(&p3,p1,b);
 	P2_negate(&p3,p3);
@@ -602,10 +603,10 @@ void test_Paiiring()
 
 	if(!P2_equal(p3,p5))
 	{
-        printf("BNPoint2 test:¡¡(-m)*x != m*(-x) \n");
+        printf("BNPoint2 test:ï¿½ï¿½(-m)*x != m*(-x) \n");
 	} else printf("Test 9 passed!\n");
 
-    //²âÊÔ (m+n)*x == m*x+n*x
+    //ï¿½ï¿½ï¿½ï¿½ (m+n)*x == m*x+n*x
 		
     Add_Big_Big(&c,a,b);
 	P2_multiply(&p2,p1,c);
@@ -614,10 +615,10 @@ void test_Paiiring()
 	P2_add(&p5,p3,p4);
 	if(!P2_equal(p2,p5))
 	{
-        printf("BNPoint test:¡¡ (m+n)*x == m*x+n*x \n");
+        printf("BNPoint test:ï¿½ï¿½ (m+n)*x == m*x+n*x \n");
 	}else printf("Test 10 passed!\n");
  	
-    //²âÊÔ x*m*n == x*n*m
+    //ï¿½ï¿½ï¿½ï¿½ x*m*n == x*n*m
     P2_multiply(&p2,p1,c);
    	P2_multiply(&p2,p2,d);
    	P2_multiply(&p3,p1,d);
@@ -628,7 +629,7 @@ void test_Paiiring()
 	}else printf("Test 11 passed!\n");
 	
 
-	//²âÊÔ p1+p2+p3 == p1+(p2+p3) 
+	//ï¿½ï¿½ï¿½ï¿½ p1+p2+p3 == p1+(p2+p3) 
 
    	P2_add(&p4,p1,p2);
 	P2_add(&p4,p4,p3);
@@ -638,10 +639,10 @@ void test_Paiiring()
 
 	if(!P2_equal(p4,p5))
 	{
-       printf("BNPoint test:¡¡p1+p2+p3 != p1+(p2+p3)\n");
+       printf("BNPoint test:ï¿½ï¿½p1+p2+p3 != p1+(p2+p3)\n");
 	}else printf("Test 12 passed!\n");
 
-   //²âÊÔ p1+(-p1) = 0
+   //ï¿½ï¿½ï¿½ï¿½ p1+(-p1) = 0
 	P2_twice(&p2,p1);
 	P2_negate(&p4,p2);
    // P2_toString_d(p4);
@@ -656,19 +657,19 @@ void test_Paiiring()
 
 	if(!P2_isZero(p5))
 	{
-        printf("BNPoint2 test:¡¡p1+(-p1) != 0 \n");
+        printf("BNPoint2 test:ï¿½ï¿½p1+(-p1) != 0 \n");
 	}else printf("Test 13 passed!\n");
 	
-	//²âÊÔ p1+(-p1) = 0
-//	printf("²âÊÔ¿ªÊ¼£º\n");
+	//ï¿½ï¿½ï¿½ï¿½ p1+(-p1) = 0
+//	printf("ï¿½ï¿½ï¿½Ô¿ï¿½Ê¼ï¿½ï¿½\n");
     P2_construct_xy(&p1,b1,b2);
     P2_negate(&p2,p1);
 	P2_add(&p2,p2,p1);
     if(!P2_isZero(p2))
 	{
-		printf("BNPoint2 Test:¡¡P+(-p) != 0\n");
+		printf("BNPoint2 Test:ï¿½ï¿½P+(-p) != 0\n");
 	}else printf("Test 14 passed!\n");
-	//	²âÊÔFrobenius
+	//	ï¿½ï¿½ï¿½ï¿½Frobenius
     P2_construct_xy(&p1,b1,b2);
     P2_multiply(&p2,p1,BN.q);
 	P2_frobenius(&p3,p1);
@@ -677,7 +678,7 @@ void test_Paiiring()
 		printf("inconsistent Frobenius\n");
 	}else printf("Test 15 passed!\n");
 
-	//	²âÊÔFrobenius 2
+	//	ï¿½ï¿½ï¿½ï¿½Frobenius 2
     //P2_construct_xy(&p1,b1,b2);
     P2_multiply(&p2,p1,BN.q);
 	P2_multiply(&p2,p2,BN.q);
@@ -688,7 +689,7 @@ void test_Paiiring()
 		printf("inconsistent Frobenius 2\n");
 	}else printf("Test 16 passed!\n");
 
-	//	²âÊÔFrobenius 3
+	//	ï¿½ï¿½ï¿½ï¿½Frobenius 3
     //P2_construct_xy(&p1,b1,b2);
     P2_multiply(&p2,p1,BN.q);
 	P2_multiply(&p2,p2,BN.q);
@@ -724,17 +725,17 @@ void test_BNPoint()
 	P_construct(&p2,b,c,d);
 	P_construct(&p3,c,d,f);
 
-	//²âÊÔ p1+(-p1) = 0
+	//ï¿½ï¿½ï¿½ï¿½ p1+(-p1) = 0
 	P_negate(&p4,p1);
 	P_add(&p4,p1,p4);
 	if(!P_isZero(p4))
 	{
-        printf("BNPoint test:¡¡p1+(-p1) != 0 \n");
+        printf("BNPoint test:ï¿½ï¿½p1+(-p1) != 0 \n");
 	}else printf("Test 1 passed!\n");
 //	P_toString_d(p4);
 //	printf("\n");
   
-	//²âÊÔ p1+p2 = p2+p1
+	//ï¿½ï¿½ï¿½ï¿½ p1+p2 = p2+p1
 
 	P_add(&p4,p1,p2);
 	P_add(&p5,p2,p1);
@@ -744,11 +745,11 @@ void test_BNPoint()
 	//P_toString(p5,10);
 	if(!P_equal(p4,p5))
 	{
-        printf("BNPoint test:¡¡p1+p2 != p2+p1 \n");
+        printf("BNPoint test:ï¿½ï¿½p1+p2 != p2+p1 \n");
 	}else printf("Test 2 passed!\n");
 
  
-	//²âÊÔ p1+p1 = 2*p1
+	//ï¿½ï¿½ï¿½ï¿½ p1+p1 = 2*p1
 	
 	P_add(&p4,p1,p1);
 
@@ -756,10 +757,10 @@ void test_BNPoint()
 
 	if(!P_equal(p4,p5))
 	{
-        printf("BNPoint test:¡¡p1+p1 != 2*p1 \n");
+        printf("BNPoint test:ï¿½ï¿½p1+p1 != 2*p1 \n");
 	}else printf("Test 3 passed!\n");
  
-	//²âÊÔ 2p1+2p1 == p1+3p1
+	//ï¿½ï¿½ï¿½ï¿½ 2p1+2p1 == p1+3p1
 	// P_toString(p1,10);
 	P_twice(&p3,p1);
 	P_twice(&p4,p3);
@@ -773,16 +774,16 @@ void test_BNPoint()
 
 	if(!P_equal(p4,p5))
 	{
-        printf("BNPoint test:¡¡ 2p1+2p1 != p1+3p1 \n");
+        printf("BNPoint test:ï¿½ï¿½ 2p1+2p1 != p1+3p1 \n");
 	}else printf("Test 4 passed!\n");
 
 
-	//²âÊÔ n*p == 0
+	//ï¿½ï¿½ï¿½ï¿½ n*p == 0
     P_construct_xy(&p1,a,b);
 
      if(!P_isOnBNCurve(p1))
 	{
-        printf("BNPoint test:¡¡P is not on the BN Curve!\n");
+        printf("BNPoint test:ï¿½ï¿½P is not on the BN Curve!\n");
 	} else printf("Test 5 passed!\n");
 
 	P_multiply(&p2,p1,b);
@@ -795,31 +796,31 @@ void test_BNPoint()
 //	P_toString(p4,DEC);
     if(!P_isZero(p4))
 	{
-        printf("BNPoint test:¡¡n*P != 0 \n");
+        printf("BNPoint test:ï¿½ï¿½n*P != 0 \n");
 	} else printf("Test 6 passed!\n");
   
- 	//²âÊÔ p+0 == p
+ 	//ï¿½ï¿½ï¿½ï¿½ p+0 == p
 	P_add(&p5,p2,p4);
 	if(!P_equal(p2,p5))
 	{
-        printf("BNPoint test:¡¡p + 0 != p \n");
+        printf("BNPoint test:ï¿½ï¿½p + 0 != p \n");
 	} else printf("Test 7 passed!\n");
-    //²âÊÔ -(-p) == p
+    //ï¿½ï¿½ï¿½ï¿½ -(-p) == p
 	P_negate(&p5,p1);
 	P_negate(&p5,p5);
 	if(!P_equal(p1,p5))
 	{
-        printf("BNPoint test:¡¡ -(-p) != p \n");
+        printf("BNPoint test:ï¿½ï¿½ -(-p) != p \n");
 	} else printf("Test 8 passed!\n");
     
-    //²âÊÔ 0*p == 0
+    //ï¿½ï¿½ï¿½ï¿½ 0*p == 0
 	P_multiply(&p5,p1,BN.ZERO);
 	if(!P_isZero(p5))
 	{
-        printf("BNPoint test:¡¡ 0*p != 0 \n");
+        printf("BNPoint test:ï¿½ï¿½ 0*p != 0 \n");
 	}else printf("Test 9 passed!\n");
 
-    //²âÊÔ (-m)*x == m*(-x)
+    //ï¿½ï¿½ï¿½ï¿½ (-m)*x == m*(-x)
 
 	
 	//c = CBigInt_neg(b);
@@ -830,10 +831,10 @@ void test_BNPoint()
 
 	if(!P_equal(p3,p5))
 	{
-        printf("BNPoint test:¡¡(-m)*x != m*(-x) \n");
+        printf("BNPoint test:ï¿½ï¿½(-m)*x != m*(-x) \n");
 	}else printf("Test 10 passed!\n");
 
-    //²âÊÔ (m+n)*x == m*x+n*x
+    //ï¿½ï¿½ï¿½ï¿½ (m+n)*x == m*x+n*x
 
 	Get(&a,"93DE051D62BF718FF5ED0704487D01D6E1E4086909DC3280E8C4E4817C66DDDD",HEX);
 	Get(&b,"21FE8DDA4F21E607631065125C395BBC1C1C00CBFA6024350C464CD70A3EA616",HEX);
@@ -844,10 +845,10 @@ void test_BNPoint()
 	P_add(&p5,p3,p4);
 	if(!P_equal(p2,p5))
 	{
-        printf("BNPoint test:¡¡ (m+n)*x == m*x+n*x \n");
+        printf("BNPoint test:ï¿½ï¿½ (m+n)*x == m*x+n*x \n");
 	}else printf("Test 11 passed!\n");
  	
-    //²âÊÔ x*m*n == x*n*m
+    //ï¿½ï¿½ï¿½ï¿½ x*m*n == x*n*m
 	Get(&a,"93DE051D62BF718FF5ED0704487D01D6E1E4086909DC3280E8C4E4817C66DDDD",HEX);
 	Get(&b,"21FE8DDA4F21E607631065125C395BBC1C1C00CBFA6024350C464CD70A3EA616",HEX);
 	Get(&c,"85AEF3D078640C98597B6027B441A01FF1DD2C190F5E93C454806C11D8806141",HEX);
@@ -866,7 +867,7 @@ void test_BNPoint()
 	}else printf("Test 12 passed!\n");
 	
 
-	//²âÊÔ p1+p2+p3 == p1+(p2+p3) 
+	//ï¿½ï¿½ï¿½ï¿½ p1+p2+p3 == p1+(p2+p3) 
 
    	P_add(&p4,p1,p2);
 	P_add(&p4,p4,p3);
@@ -876,7 +877,7 @@ void test_BNPoint()
 
 	if(!P_equal(p4,p5))
 	{
-       printf("BNPoint test:¡¡p1+p2+p3 != p1+(p2+p3)\n");
+       printf("BNPoint test:ï¿½ï¿½p1+p2+p3 != p1+(p2+p3)\n");
 	} else printf("Test 13 passed!\n");
 /* */ 
 	printf("BNPoint test: over!\n");
@@ -960,7 +961,7 @@ void test_BNField12()
 		printf("BNField12 test: (BN1+BN2)+k != BN1+(BN2+k) \n");
 	}else printf("Test 4 passed!\n");
 
-    // ²âÊÔb1 - b2 == -(b2 - b1) 
+    // ï¿½ï¿½ï¿½ï¿½b1 - b2 == -(b2 - b1) 
     F12_substract(&TN1,BN1,BN2);
     F12_substract(&TN2,BN2,BN1);
 	F12_negate(&TN2,TN2);
@@ -969,14 +970,14 @@ void test_BNField12()
 		printf("BNField12 test: BN1 - BN2 != -(BN2 - BN1) \n");
 	}else printf("Test 5 passed!\n");
 
-   // ²âÊÔ b1 - b1 == 0
+   // ï¿½ï¿½ï¿½ï¿½ b1 - b1 == 0
     F12_substract(&TN1,BN1,BN1);
 	if(!F12_isZero(TN1))
 	{
 		printf("BNField12 test: BN1 - BN1 != 0 \n");
 	}else printf("Test 6 passed!\n");
  
-    // ²âÊÔ b1 * 2  != b1 + b1
+    // ï¿½ï¿½ï¿½ï¿½ b1 * 2  != b1 + b1
     F12_add(&TN1,BN1,BN1);  
 	F12_multiply_i(&TN2,BN1,2);
 	if(!F12_equal(TN1,TN2))
@@ -985,7 +986,7 @@ void test_BNField12()
 	}else printf("Test 7 passed!\n");
 
     
-   // ²âÊÔ b1 * b2 == b2*b1
+   // ï¿½ï¿½ï¿½ï¿½ b1 * b2 == b2*b1
 
 	F12_multiply(&TN1,BN1,BN2);
 	F12_multiply(&TN2,BN2,BN1);
@@ -996,7 +997,7 @@ void test_BNField12()
 	}else printf("Test 8 passed!\n");
 
   
-	// ²âÊÔ (b1 * b2) * b3 == b1* (b2*b3)	
+	// ï¿½ï¿½ï¿½ï¿½ (b1 * b2) * b3 == b1* (b2*b3)	
 	F12_multiply(&TN1,BN1,BN2);	
 	F12_multiply(&TN1,TN1,BN3);
 	F12_multiply(&TN2,BN2,BN3);
@@ -1007,7 +1008,7 @@ void test_BNField12()
 		printf("BNField12 test: (BN1 * BN2) * BN3 != BN1* (BN2*BN3) \n");
 	}else printf("Test 9 passed!\n");
 
-	// ²âÊÔ (b1 * b2) * k == b1* (b2*k)	
+	// ï¿½ï¿½ï¿½ï¿½ (b1 * b2) * k == b1* (b2*k)	
  
 	F12_multiply(&TN1,BN1,BN2);
 	F12_multiply_F4(&TN1,TN1,B1);
@@ -1018,7 +1019,7 @@ void test_BNField12()
 		printf("BNField12 test: (BN1 * BN2) * B1 != BN1* (BN2*B1)  \n");
 	}else printf("Test 10 passed!\n");	
 
-	// ²âÊÔ (b1 * b2) * i == b1* (b2*i)	
+	// ï¿½ï¿½ï¿½ï¿½ (b1 * b2) * i == b1* (b2*i)	
 	F12_multiply(&TN1,BN1,BN2);
 	F12_multiply_i(&TN1,TN1,5);
 	F12_multiply_i(&TN2,BN2,5);
@@ -1030,7 +1031,7 @@ void test_BNField12()
     
 	
 
-	// ²âÊÔb1 ^2 == b1*b1	
+	// ï¿½ï¿½ï¿½ï¿½b1 ^2 == b1*b1	
 
 	F12_square(&TN1,BN1);
 	F12_multiply(&TN2,BN1,BN1);
@@ -1040,7 +1041,7 @@ void test_BNField12()
 		printf("BNField12 test: BN1 ^2 != BN1*BN1	 \n");
 	}else printf("Test 12 passed!\n");
 
-	// ²âÊÔb1 *b1^(-1) == 1	
+	// ï¿½ï¿½ï¿½ï¿½b1 *b1^(-1) == 1	
 
 	F12_inverse(&TN1,BN1);
    //F12_toString(TN1,HEX);
@@ -1132,7 +1133,7 @@ void test_BNField4()
 		printf("BNField4 test: (B1+B2)+k != B1+(B2+k) \n");
 	}else printf("Test 4 passed!\n");
 
-    // ²âÊÔb1 - b2 == -(b2 - b1) 
+    // ï¿½ï¿½ï¿½ï¿½b1 - b2 == -(b2 - b1) 
     F4_substract(&T1,B1,B2);
     F4_substract(&T2,B2,B1);
 	F4_negate(&T2,T2);
@@ -1141,14 +1142,14 @@ void test_BNField4()
 		printf("BNField4 test: B1 - B2 != -(B2 - B1) \n");
 	}else printf("Test 5 passed!\n");
 
-   // ²âÊÔ b1 - b1 == 0
+   // ï¿½ï¿½ï¿½ï¿½ b1 - b1 == 0
     F4_substract(&T1,B1,B1);
 	if(!F4_isZero(T1))
 	{
 		printf("BNField4 test: B1 - B1 != 0 \n");
 	}else printf("Test 6 passed!\n");
 
-    // ²âÊÔ b1 * 2  != b1 + b1
+    // ï¿½ï¿½ï¿½ï¿½ b1 * 2  != b1 + b1
     F4_add(&T1,B1,B1);  
 	F4_multiply_i(&T2,B1,2);
 	if(!F4_equal(T1,T2))
@@ -1157,7 +1158,7 @@ void test_BNField4()
 	}else printf("Test 7 passed!\n");
 
     
-   // ²âÊÔ b1 * b2 == b2*b1
+   // ï¿½ï¿½ï¿½ï¿½ b1 * b2 == b2*b1
 
 	F4_multiply(&T1,B1,B2);
 	F4_multiply(&T2,B2,B1);
@@ -1168,7 +1169,7 @@ void test_BNField4()
 	}else printf("Test 8 passed!\n");
 
   
-	// ²âÊÔ (b1 * b2) * b3 == b1* (b2*b3)	
+	// ï¿½ï¿½ï¿½ï¿½ (b1 * b2) * b3 == b1* (b2*b3)	
 	F4_multiply(&T1,B1,B2);
 	F4_multiply(&T1,T1,B3);
 	F4_multiply(&T2,B2,B3);
@@ -1178,7 +1179,7 @@ void test_BNField4()
 		printf("BNField4 test: (B1 * B2) * B3 != B1* (B2*B3) \n");
 	}else printf("Test 9 passed!\n");
  
-	// ²âÊÔ (b1 * b2) * k == b1* (b2*k)	
+	// ï¿½ï¿½ï¿½ï¿½ (b1 * b2) * k == b1* (b2*k)	
 
 
 	F4_multiply(&T1,B1,B2);
@@ -1191,7 +1192,7 @@ void test_BNField4()
 	}else printf("Test 10 passed!\n");
 
 
-	// ²âÊÔ (b1 * b2) * i == b1* (b2*i)	
+	// ï¿½ï¿½ï¿½ï¿½ (b1 * b2) * i == b1* (b2*i)	
 	F4_multiply(&T1,B1,B2);
 	F4_multiply_i(&T1,T1,5);
 	F4_multiply_i(&T2,B2,5);
@@ -1202,7 +1203,7 @@ void test_BNField4()
 	}else printf("Test 11 passed!\n");
    
 	
-	// ²âÊÔ (b1 * b2) * u == b1* (b2*u)	
+	// ï¿½ï¿½ï¿½ï¿½ (b1 * b2) * u == b1* (b2*u)	
 
 	F4_multiply(&T1,B1,B2);
 	F4_multiply_v(&T1,T1);
@@ -1214,7 +1215,7 @@ void test_BNField4()
 	}else printf("Test 12 passed!\n");
  
 	
-	// ²âÊÔb1 ^2 == b1*b1	
+	// ï¿½ï¿½ï¿½ï¿½b1 ^2 == b1*b1	
 
 	F4_square(&T1,B1);
 	F4_multiply(&T2,B1,B1);
@@ -1224,7 +1225,7 @@ void test_BNField4()
 		printf("BNField4 test: B1 ^2 != B1*B1	 \n");
 	}else printf("Test 13 passed!\n");
 
-	// ²âÊÔb1 *b1^(-1) == 1	
+	// ï¿½ï¿½ï¿½ï¿½b1 *b1^(-1) == 1	
 
 	F4_inverse(&T1,B1);
 	//F4_toString(T1,DEC);
@@ -1310,7 +1311,7 @@ void test_BNField2()
 	{
 		printf("BNField2 test: (b1+b2)+k != b1+(b2+k) \n");
 	}else printf("Test 4 passed!\n");
-   // ²âÊÔb1 - b2 == -(b2 - b1) 
+   // ï¿½ï¿½ï¿½ï¿½b1 - b2 == -(b2 - b1) 
     F2_substract(&t1,b1,b2);
     F2_substract(&t2,b2,b1);
 	F2_negate(&t2,t2);
@@ -1319,7 +1320,7 @@ void test_BNField2()
 		printf("BNField2 test: b1 - b2 != -(b2 - b1) \n");
 	}else printf("Test 5 passed!\n");
 
-   // ²âÊÔ b1 - b1 == 0
+   // ï¿½ï¿½ï¿½ï¿½ b1 - b1 == 0
     F2_substract(&t1,b1,b1);
 	if(!F2_isZero(t1))
 	{
@@ -1335,7 +1336,7 @@ void test_BNField2()
 	}else printf("Test 7 passed!\n");
  
     
-   // ²âÊÔ b1 * b2 == b2*b1
+   // ï¿½ï¿½ï¿½ï¿½ b1 * b2 == b2*b1
 	F2_multiply(&t1,b1,b2);
 	F2_multiply(&t2,b2,b1);
 	if(!F2_equal(t1,t2))
@@ -1344,7 +1345,7 @@ void test_BNField2()
 	}else printf("Test 8 passed!\n");
 
  
-	// ²âÊÔ (b1 * b2) * b3 == b1* (b2*b3)	
+	// ï¿½ï¿½ï¿½ï¿½ (b1 * b2) * b3 == b1* (b2*b3)	
 	F2_multiply(&t1,b1,b2);
 	F2_multiply(&t1,t1,b3);
 	F2_multiply(&t2,b2,b3);
@@ -1354,7 +1355,7 @@ void test_BNField2()
 		printf("BNField2 test: (b1 * b2) * b3 != b1* (b2*b3) \n");
 	}else printf("Test 9 passed!\n");
 
-	// ²âÊÔ (b1 * b2) * k == b1* (b2*k)	
+	// ï¿½ï¿½ï¿½ï¿½ (b1 * b2) * k == b1* (b2*k)	
 	F2_multiply(&t1,b1,b2);
 	F2_multiply_I(&t1,t1,a);
 	F2_multiply_I(&t2,b2,a);
@@ -1365,7 +1366,7 @@ void test_BNField2()
 	}else printf("Test 10 passed!\n");
 
 
-	// ²âÊÔ (b1 * b2) * i == b1* (b2*i)	
+	// ï¿½ï¿½ï¿½ï¿½ (b1 * b2) * i == b1* (b2*i)	
 	F2_multiply(&t1,b1,b2);
 	F2_multiply_i(&t1,t1,5);
 	F2_multiply_i(&t2,b2,5);
@@ -1376,7 +1377,7 @@ void test_BNField2()
 	}else printf("Test 11 passed!\n");
     
 	
-	// ²âÊÔ (b1 * b2) * u == b1* (b2*u)	
+	// ï¿½ï¿½ï¿½ï¿½ (b1 * b2) * u == b1* (b2*u)	
 
 	F2_multiply(&t1,b1,b2);
 	F2_multiply_u(&t1,t1);
@@ -1387,7 +1388,7 @@ void test_BNField2()
 		printf("BNField2 test: (b1 * b2) * u != b1* (b2*u)	 \n");
 	}else printf("Test 12 passed!\n");
 
-	// ²âÊÔb1 ^2 == b1*b1	
+	// ï¿½ï¿½ï¿½ï¿½b1 ^2 == b1*b1	
 
 	F2_square(&t1,b1);
 	F2_multiply(&t2,b1,b1);
@@ -1397,7 +1398,7 @@ void test_BNField2()
 		printf("BNField2 test: b1 ^2 != b1*b1	 \n");
 	}else printf("Test 13 passed!\n");
 
-	// ²âÊÔb1 *b1^(-1) == 1	
+	// ï¿½ï¿½ï¿½ï¿½b1 *b1^(-1) == 1	
 	
 	F2_inverse(&t1,b1);
 	F2_multiply(&t1,t1,b1);
