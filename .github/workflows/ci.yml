@@ -1,0 +1,112 @@
+name: SM9 Cross-Platform Build
+
+on:
+  push:
+    branches: [ master, main, "feature/*" ]
+  pull_request:
+    branches: [ master, main ]
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential cmake
+
+    - name: Build with Make
+      run: make
+
+    - name: Run test (Make)
+      run: ./test
+
+    - name: Clean Make build
+      run: make clean
+
+    - name: Build with CMake
+      run: |
+        mkdir build && cd build
+        cmake ..
+        cmake --build .
+
+    - name: Run test (CMake)
+      run: ./build/bin/sm9_test
+
+  build-macos:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install dependencies
+      run: brew install cmake
+
+    - name: Build with Make
+      run: make
+
+    - name: Run test (Make)
+      run: ./test
+
+    - name: Clean Make build
+      run: make clean
+
+    - name: Build with CMake
+      run: |
+        mkdir build && cd build
+        cmake ..
+        cmake --build .
+
+    - name: Run test (CMake)
+      run: ./build/bin/sm9_test
+
+  build-windows-msys2:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: msys2 {0}
+    steps:
+    - uses: msys2/setup-msys2@v2
+      with:
+        msystem: UCRT64
+        update: true
+        install: mingw-w64-ucrt-x86_64-gcc mingw-w64-ucrt-x86_64-cmake make
+
+    - uses: actions/checkout@v4
+
+    - name: Build with Make
+      run: make
+
+    - name: Run test (Make)
+      run: ./test.exe
+
+    - name: Clean Make build
+      run: make clean
+
+    - name: Build with CMake
+      run: |
+        mkdir build && cd build
+        cmake -G "MinGW Makefiles" ..
+        cmake --build .
+
+    - name: Run test (CMake)
+      run: ./build/bin/sm9_test.exe
+
+  build-windows-msvc:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Configure MSVC
+      uses: ilammy/msvc-dev-cmd@v1
+
+    - name: Build with CMake
+      run: |
+        mkdir build
+        cd build
+        cmake -G "NMake Makefiles" ..
+        cmake --build .
+
+    - name: Run test (CMake)
+      run: ./build/bin/sm9_test.exe
