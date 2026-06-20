@@ -1,0 +1,60 @@
+# Build outputs
+*.o
+*.obj
+*.exe
+*.out
+*.app
+test
+sm9_test
+*.so
+*.dylib
+*.a
+*.lib
+*.dll
+
+# Build directories
+build/
+bin/
+lib/
+cmake-build-*/
+Debug/
+Release/
+x64/
+x86/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.viminfo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Visual Studio
+*.sdf
+*.ipch
+ipch/
+*.aps
+*.ncb
+*.suo
+*.user
+*.idb
+*.pdb
+*.ilk
+*.log
+
+# Makefiles
+Makefile.bak
+
+# Test artifacts
+*.gcda
+*.gcno
+coverage/
+
+# Temporary files
+*.tmp
+*.bak
