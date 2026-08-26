@@ -1,3 +1,5 @@
+
+
 # SM9 Cryptographic Algorithm Implementation
 
 SM9 (Identity-Based Cryptography) is an identity-based cryptographic algorithm standard issued by the State Cryptography Administration of China.
@@ -47,12 +49,12 @@ SM9/
 # Build library and test
 make
 
+# Run test
+./test            # Linux/macOS
+./test.exe        # Windows
+
 # Clean build artifacts
 make clean
-
-# Run test
-./bin/sm9_test        # Linux/macOS
-./bin/sm9_test.exe    # Windows
 ```
 
 ### Method 2: Using CMake (Cross-platform)
